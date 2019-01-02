@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h1>Message primeui.jsp'den gelen : ${text}</h1>
+<h1>Message comes from primeui.jsp : ${text}</h1>
 
 <div id="tbllocal"></div>
 

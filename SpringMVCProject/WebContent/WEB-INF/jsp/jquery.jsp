@@ -12,7 +12,7 @@
 <p>Message : ${text}</p>
 
 
-<button>Tikla ve Yok Ettt..</button>
+<button>push and wipe off</button>
 
 	<script type="text/javascript">
 	
