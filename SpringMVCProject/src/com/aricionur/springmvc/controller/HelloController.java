@@ -1,28 +1,34 @@
 package com.aricionur.springmvc.controller;
 
 /* Used annotations:
- * @Controller		
- * @RequestMapping
- * @Scope
- * @Autowired
-*		@Inject
-*@PathVariable
-*@RequestParam
+*  @Controller		
+*  @RequestMapping
+*  @Scope
+*  @Autowired
+*  @Inject
+*  @PathVariable
+*  @RequestParam
 *		
 */
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aricionur.springmvc.entity.Person;
 import com.aricionur.springmvc.service.HelloServicePrototype;
 import com.aricionur.springmvc.service.HelloServiceSingleton;
+import com.aricionur.springmvc.service.PersonService;
 
 @Controller
 @RequestMapping("/hello")
@@ -36,6 +42,9 @@ public class HelloController {
 //	@Autowired
 	@Inject
 	HelloServicePrototype helloServicePrototype;
+	
+	@Inject
+	PersonService personService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doHello(ModelMap model) {
@@ -59,7 +68,8 @@ public class HelloController {
 	public String redirectToPage(@RequestParam("page") String pageName, ModelMap model) {
 		return pageName;
 	}
-
+	
+	//same objects are used. Same values will be shown on browser page for singleton and prototype services.
 	@RequestMapping(value = "/serviceTest", method = RequestMethod.GET)
 	public String doServiceTest(ModelMap model) {
 		model.addAttribute("singletonServiceMessage", helloServiceSingleton.getMessage());
